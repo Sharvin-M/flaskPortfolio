@@ -1,0 +1,35 @@
+{% block content %}
+<div class="contact">
+    <title>Contact</title>
+    <h3>Contact Me</h3>
+    <form action="{{ url_for('get_contact') }}" method=post>
+            {{ form.csrf_token() }}
+        <div>
+            <!-- name forms -->
+            <p>
+                {{ form.name.label }} <br>
+                {{ form.name(placeholder='Your name') }}
+            </p>
+            <!-- email forms -->
+            <p>
+                {{ form.email.label }} <br>
+                {{ form.email(placeholder='Your e-mail ...') }}
+            </p>
+            <!-- Subject of your request -->
+            <p>
+                {{ form.subject.label }}<br>
+                {{form.subject(placeholder='Your subject ...')}}
+            </p>
+            <!-- Content of your request -->
+            <p>
+                {{ form.message.label }}<br>
+                {{ form.message(placeholder='write your request ...') }}
+            </p>
+            <!-- Submit button -->
+            <p>
+                {{ form.submit }}
+            </p>
+        </div>
+    </form>
+</div>
+{% endblock %}
