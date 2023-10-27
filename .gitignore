@@ -41,7 +41,6 @@ instance/
 
 # Ignore node_modules
 node_modules/
-venv/
 tailwind.config.js
 package-lock.json
 package.json
