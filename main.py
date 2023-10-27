@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, request, redirect, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-from wtforms import TextField, BooleanField, TextAreaField, SubmitField
+from wtforms import StringField, BooleanField, TextAreaField, SubmitField
 import pandas as pd
 import os 
 
@@ -16,9 +16,9 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 class ContactForm(FlaskForm):
-    name = TextField("Name")
-    email = TextField("Email")
-    subject = TextField("Subject")
+    name = StringField("Name")
+    email = StringField("Email")
+    subject = StringField("Subject")
     message = TextAreaField("Message")
     submit = SubmitField("Send")
 
@@ -34,7 +34,6 @@ def resume():
 @app.route("/projects")
 def projects():
     return render_template("projects.html")
-        
 
 @app.route("/contact", methods=['POST', 'GET'])
 def get_contact():
