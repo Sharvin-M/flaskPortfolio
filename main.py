@@ -44,7 +44,7 @@ def get_contact():
         subject = request.form["subject"]
         message = request.form["message"]
         res = pd.DataFrame({'name':name, 'email':email, 'subject':subject ,'message':message}, index=[0])
-        res.to_csv('./contactusMessage.csv')
+        res.to_csv('./contactUsMessage.csv')
         return render_template('ThankYou.html')
     else:
         return render_template('contact.html', form=form)
