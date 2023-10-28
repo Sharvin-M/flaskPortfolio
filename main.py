@@ -5,7 +5,8 @@ from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, BooleanField, TextAreaField, SubmitField
 import pandas as pd
-import os 
+import os
+import smtplib
 
 
 
