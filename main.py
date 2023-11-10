@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect, g
 # from flask_mail import Mail, Message
+from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
@@ -10,11 +11,12 @@ import smtplib
 
 
 
+
 # page routes
 app = Flask(__name__)
-
 SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
+
+
 
 class ContactForm(FlaskForm):
     name = StringField("Name")
