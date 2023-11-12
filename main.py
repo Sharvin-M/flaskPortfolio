@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect, g
 # from flask_mail import Mail, Message
 from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, BooleanField, TextAreaField, SubmitField
@@ -10,11 +11,17 @@ import os
 import smtplib
 
 
+con = sqlite3.connect('contactsPage.db') # create/connect to sqlite db and thene ccreate a cursor to execute cmds
+cur = con.cursor()
+
+cur.execute('''CREATE TABLE IF NOT EXISTS contactsPage
+            (name text, email text, subject text, message text)''')
 
 
 # page routes
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 
 
 
@@ -47,7 +54,9 @@ def get_contact():
         subject = request.form["subject"]
         message = request.form["message"]
         res = pd.DataFrame({'name':name, 'email':email, 'subject':subject ,'message':message}, index=[0])
-        res.to_csv('./contactUsMessage.csv')
+        # res.to_csv('./contactUsMessage.csv')
+        cur.executemany("INSERT OR IGNORE INTO contactsPage VALUES (?, ?, ?, ?)", res)
+        con.commit()
         return render_template('ThankYou.html')
     else:
         return render_template('contact.html', form=form)
