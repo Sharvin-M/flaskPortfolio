@@ -11,12 +11,6 @@ import os
 import smtplib
 
 
-con = sqlite3.connect('contactsPage.db') # create/connect to sqlite db and thene ccreate a cursor to execute cmds
-cur = con.cursor()
-
-cur.execute('''CREATE TABLE IF NOT EXISTS contactsPage
-            (name text, email text, subject text, message text)''')
-
 
 # page routes
 app = Flask(__name__)
@@ -55,8 +49,15 @@ def get_contact():
         message = request.form["message"]
         res = pd.DataFrame({'name':name, 'email':email, 'subject':subject ,'message':message}, index=[0])
         # res.to_csv('./contactUsMessage.csv')
-        cur.executemany("INSERT OR IGNORE INTO contactsPage VALUES (?, ?, ?, ?)", res)
+
+        con = sqlite3.connect('contactsPage.db') # create/connect to sqlite db and thene ccreate a cursor to execute cmds
+        cur = con.cursor()
+        cur.execute('''CREATE TABLE IF NOT EXISTS contactsPage
+            (sku text PRIMARY KEY, name text, email text, subject text, message text)''')
+        cur.executemany("INSERT INTO contactsPage VALUES (?, ?, ?, ?)", res)
+        cur.close()
         con.commit()
+        
         return render_template('ThankYou.html')
     else:
         return render_template('contact.html', form=form)
