@@ -49,11 +49,18 @@ def get_contact():
         email = request.form["email"]
         subject = request.form["subject"]
         message = request.form["message"]
-        res = pd.DataFrame(
-            {"name": name, "email": email, "subject": subject, "message": message},
-            index=[0],
-        )
+        # res = {
+        #     "name": "Name",
+        #     "email": "Email",
+        #     "subject": "Subject",
+        #     "message": "Message"
+        #     }
+        # res = pd.DataFrame(
+        #     {"name": name, "email": email, "subject": subject, "message": message},
+        #     index=[0],
+        # )
         # res.to_csv('./contactUsMessage.csv')
+        res = ("name", "email", "subject", "message")
 
         con = sqlite3.connect(
             "contactsPage.db"
@@ -61,12 +68,13 @@ def get_contact():
         cur = con.cursor()
         cur.execute(
             """CREATE TABLE IF NOT EXISTS contactsPage
-            (sku text PRIMARY KEY, name text, email text, subject text, message text)"""
+            (name text, email text, subject text, message text)"""
         )
-        cur.executemany("INSERT INTO contactsPage VALUES (?, ?, ?, ?)", res)
+        cur.executemany(
+            "INSERT INTO contactsPage VALUES(?,?,?,?)",(res,))
         cur.close()
         con.commit()
-        db.connections.close_all()
+        
         return render_template("ThankYou.html")
     else:
         return render_template("contact.html", form=form)
