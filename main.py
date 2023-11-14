@@ -49,17 +49,6 @@ def get_contact():
         email = request.form["email"]
         subject = request.form["subject"]
         message = request.form["message"]
-        # res = {
-        #     "name": "Name",
-        #     "email": "Email",
-        #     "subject": "Subject",
-        #     "message": "Message"
-        #     }
-        # res = pd.DataFrame(
-        #     {"name": name, "email": email, "subject": subject, "message": message},
-        #     index=[0],
-        # )
-        # res.to_csv('./contactUsMessage.csv')
         res = (name, email, subject, message)
 
         con = sqlite3.connect(
