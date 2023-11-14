@@ -60,7 +60,7 @@ def get_contact():
         #     index=[0],
         # )
         # res.to_csv('./contactUsMessage.csv')
-        res = ("name", "email", "subject", "message")
+        res = (name, email, subject, message)
 
         con = sqlite3.connect(
             "contactsPage.db"
