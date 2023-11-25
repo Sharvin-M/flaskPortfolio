@@ -1,15 +1,8 @@
-from flask import Flask, render_template, url_for, request, redirect, g
-
-# from flask_mail import Mail, Message
-from flask_mail import Mail, Message
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request
 import sqlite3
 from flask_wtf import FlaskForm
-from flask_wtf.csrf import CSRFProtect
-from wtforms import StringField, BooleanField, TextAreaField, SubmitField
-import pandas as pd
+from wtforms import StringField, TextAreaField, SubmitField
 import os
-import smtplib
 
 
 # page routes
@@ -59,11 +52,10 @@ def get_contact():
             """CREATE TABLE IF NOT EXISTS contactsPage
             (name text, email text, subject text, message text)"""
         )
-        cur.executemany(
-            "INSERT INTO contactsPage VALUES(?,?,?,?)",(res,))
+        cur.executemany("INSERT INTO contactsPage VALUES(?,?,?,?)", (res,))
         cur.close()
         con.commit()
-        
+
         return render_template("ThankYou.html")
     else:
         return render_template("contact.html", form=form)
