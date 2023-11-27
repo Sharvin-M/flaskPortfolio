@@ -1,0 +1,14 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+node_modules/
+tailwind.config.js
+package-lock.json
+package.json
+package-lock.json
+contactsPage.db
+contactsPage.db-journal
+.ruff_cache
+```
