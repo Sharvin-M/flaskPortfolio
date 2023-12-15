@@ -1,0 +1,35 @@
+blinker==1.6.3
+build==1.0.3
+certifi @ file:///private/tmp/python-certifi-20231118-5246-p3lgxk/certifi-2023.11.17
+cffi @ file:///private/tmp/cffi-20231015-5890-1t5aans/cffi-1.16.0
+click==8.1.7
+cryptography @ file:///private/tmp/python-cryptography-20231128-6376-siliy0/cryptography-41.0.7
+Flask==3.0.0
+Flask-Mail==0.9.1
+Flask-SQLAlchemy==3.1.1
+Flask-WTF==1.2.1
+greenlet==3.0.1
+gunicorn==21.2.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+markdown-it-py==3.0.0
+MarkupSafe==2.1.3
+mdurl==0.1.2
+numpy==1.26.1
+packaging==23.2
+pandas==2.1.2
+pycparser @ file:///private/tmp/pycparser-20231013-5647-12y5m5s/pycparser-2.21
+Pygments==2.17.2
+pyproject_hooks==1.0.0
+python-dateutil==2.8.2
+pytz==2023.3.post1
+PyYAML @ file:///private/tmp/pyyaml-20231019-6030-1l8rk6l/PyYAML-6.0.1
+rich==13.7.0
+six==1.16.0
+SQLAlchemy==2.0.22
+typing_extensions==4.8.0
+tzdata==2023.3
+uWSGI==2.0.23
+waitress==2.1.2
+Werkzeug==3.0.1
+WTForms==3.1.0

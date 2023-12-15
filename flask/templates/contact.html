@@ -1,0 +1,45 @@
+{% block content %}
+<link rel="stylesheet" href="/static/css/main.css" />
+<body bgcolor="d8a47f">
+
+<div class="contact">
+    <title>Contact</title>
+    <h3>Send Me a Message!</h3>
+    <form action="{{ url_for('get_contact') }}" method=post>
+            {{ form.csrf_token() }}
+        <div>
+            <!-- name forms -->
+            <p>
+                {{ form.name.label }} <br>
+                {{ form.name(placeholder='Your name') }}
+            </p>
+            <!-- email forms -->
+            <p>
+                {{ form.email.label }} <br>
+                {{ form.email(placeholder='Your e-mail ...') }}
+            </p>
+            <!-- Subject of your request -->
+            <p>
+                {{ form.subject.label }}<br>
+                {{form.subject(placeholder='Your subject ...')}}
+            </p>
+            <!-- Content of your request -->
+            <p>
+                {{ form.message.label }}<br>
+                {{ form.message(placeholder='write your request ...') }}
+            </p>
+            <!-- Submit button -->
+            <p
+            class="ml-4 inline-flex text-gray-700 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+            style="background-color: #0F7173"
+              >
+                {{ form.submit }}
+            </p>
+        </div>
+    </form>
+</div>    
+</body>
+<a class="ml-4 inline-flex text-gray-700 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+            style="background-color: #0F7173" href="{{ url_for('index') }}">Home</a>
+
+{% endblock %}
